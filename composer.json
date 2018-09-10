@@ -3,7 +3,7 @@
     "name": "pre/trailing-commas",
     "license": "MIT",
     "require": {
-        "pre/plugin": "*"
+        "pre/plugin": "^0.11.0"
     },
     "autoload": {
         "files": [
@@ -17,16 +17,5 @@
         "macros": [
             "source/macros.yay"
         ]
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../pre-plugin",
-            "options": {
-                "symlink": false
-            }
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
