@@ -1,28 +1,28 @@
 <?php
 
-macro {
-    ·chain(
-        ·either(
-            function,
-            ·token(T_STRING),
-            ·token(T_VARIABLE)
-        )·function_name,
-        ·token("("),
-        ·lst(
-            ·layer_with_trailing_comma()·function_parameter,
-            ·token(",")
-        )·function_parameters,
-        ·token(")")
-    )
+$(macro) {
+    $(chain(
+        either(
+            token(T_FUNCTION),
+            token(T_STRING),
+            token(T_VARIABLE)
+        ) as functionName,
+        token("("),
+        lst(
+            \Pre\TrailingCommas\layerWithTrailingComma() as functionParameter,
+            token(",")
+        ) as functionParameters,
+        token(")")
+    ))
 } >> {
-    ·function_name(·function_parameters ··· (, ) {·function_parameter})
+    $(functionName)($(functionParameters ... (, ) {$(functionParameter)}))
 }
 
-macro {
-    ·chain(
-        ·token(","),
-        ·token(")")·paren
-    )
+$(macro) {
+    $(chain(
+        token(","),
+        token(")") as parenthesis
+    ))
 } >> {
-    ··unvar(·paren)
+    $$(unvar($(parenthesis)))
 }
